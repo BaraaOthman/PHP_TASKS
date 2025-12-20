@@ -27,6 +27,7 @@ $_['column_cost']            = 'Cost';
 $_['entry_cost']             = 'Cost';
 $_['column_profit'] = 'Profit';
 $_['entry_profit']  = 'Profit';
+$_['column_category'] = 'Category';
 
 
 

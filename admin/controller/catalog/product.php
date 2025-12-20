@@ -244,6 +244,13 @@ class ControllerCatalogProduct extends Controller {
 			$filter_model = null;
 		}
 
+		if (isset($this->request->get['filter_category_id'])) {
+	$filter_category_id = (int)$this->request->get['filter_category_id'];
+} else {
+	$filter_category_id = null;
+}
+
+
 		if (isset($this->request->get['filter_price'])) {
 			$filter_price = $this->request->get['filter_price'];
 		} else {
@@ -310,6 +317,9 @@ class ControllerCatalogProduct extends Controller {
     $url .= '&filter_profit=' . urlencode(html_entity_decode($this->request->get['filter_profit'], ENT_QUOTES, 'UTF-8'));
 }
 
+if (isset($this->request->get['filter_category_id'])) {
+	$url .= '&filter_category_id=' . (int)$this->request->get['filter_category_id'];
+}
 
 		if (isset($this->request->get['filter_quantity'])) {
 			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
@@ -397,6 +407,7 @@ class ControllerCatalogProduct extends Controller {
 				}					
 			}
 $profit_value = (float)$result['price'] - (float)$result['cost'];
+$category_paths = $this->model_catalog_product->getProductCategoryPaths($result['product_id']);
 
 			$this->data['products'][] = array(
 				'product_id' => $result['product_id'],
@@ -410,7 +421,8 @@ $profit_value = (float)$result['price'] - (float)$result['cost'];
 				'quantity'   => $result['quantity'],
 				'status'     => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
 				'selected'   => isset($this->request->post['selected']) && in_array($result['product_id'], $this->request->post['selected']),
-				'action'     => $action
+				'action'     => $action,
+				'category_paths' => $category_paths,
 			);
 		}
 
@@ -430,7 +442,7 @@ $profit_value = (float)$result['price'] - (float)$result['cost'];
 		$this->data['column_quantity'] = $this->language->get('column_quantity');		
 		$this->data['column_status'] = $this->language->get('column_status');		
 		$this->data['column_action'] = $this->language->get('column_action');		
-
+		$this->data['column_category'] = $this->language->get('column_category');
 		$this->data['button_copy'] = $this->language->get('button_copy');		
 		$this->data['button_insert'] = $this->language->get('button_insert');		
 		$this->data['button_delete'] = $this->language->get('button_delete');		
@@ -457,6 +469,10 @@ $profit_value = (float)$result['price'] - (float)$result['cost'];
 		if (isset($this->request->get['filter_name'])) {
 			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
 		}
+
+		if (isset($this->request->get['filter_category_id'])) {
+	$url .= '&filter_category_id=' . (int)$this->request->get['filter_category_id'];
+}
 
 		if (isset($this->request->get['filter_model'])) {
 			$url .= '&filter_model=' . urlencode(html_entity_decode($this->request->get['filter_model'], ENT_QUOTES, 'UTF-8'));
@@ -524,6 +540,11 @@ if (isset($this->request->get['filter_profit'])) {
 			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
 		}
 
+		if (isset($this->request->get['filter_category_id'])) {
+	$url .= '&filter_category_id=' . (int)$this->request->get['filter_category_id'];
+}
+
+
 		if (isset($this->request->get['filter_status'])) {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
 		}
@@ -546,6 +567,7 @@ if (isset($this->request->get['filter_profit'])) {
 		$this->data['pagination'] = $pagination->render();
 
 		$this->data['filter_name'] = $filter_name;
+		$this->data['filter_category_id'] = $filter_category_id;
 		$this->data['filter_model'] = $filter_model;
 		$this->data['filter_price'] = $filter_price;
 		$this->data['filter_cost'] = $filter_cost;
@@ -737,6 +759,10 @@ if (isset($this->request->get['filter_profit'])) {
 		if (isset($this->request->get['filter_quantity'])) {
 			$url .= '&filter_quantity=' . $this->request->get['filter_quantity'];
 		}	
+
+		if (isset($this->request->get['filter_category_id'])) {
+	$url .= '&filter_category_id=' . (int)$this->request->get['filter_category_id'];
+}
 
 		if (isset($this->request->get['filter_status'])) {
 			$url .= '&filter_status=' . $this->request->get['filter_status'];
@@ -1087,6 +1113,7 @@ if (isset($this->request->get['filter_profit'])) {
 			$categories = array();
 		}
 
+		$this->data['all_categories'] = $this->model_catalog_product->getAllCategoryPaths();
 		$this->data['product_categories'] = array();
 
 		foreach ($categories as $category_id) {
@@ -1418,6 +1445,7 @@ if (isset($this->request->get['filter_profit'])) {
 			$data = array(
 				'filter_name'  => $filter_name,
 				'filter_model' => $filter_model,
+				'filter_category_id' => $filter_category_id,
 				'start'        => 0,
 				'limit'        => $limit
 			);

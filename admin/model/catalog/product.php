@@ -75,11 +75,13 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		if (isset($data['product_category'])) {
-			foreach ($data['product_category'] as $category_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = '" . (int)$product_id . "', category_id = '" . (int)$category_id . "'");
-			}
-		}
+if (isset($data['product_category'])) {
+	$category_ids = $this->expandCategoriesWithParents($data['product_category']);
+
+	foreach ($category_ids as $category_id) {
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = '" . (int)$product_id . "', category_id = '" . (int)$category_id . "'");
+	}
+}
 
 		if (isset($data['product_filter'])) {
 			foreach ($data['product_filter'] as $filter_id) {
@@ -215,11 +217,14 @@ class ModelCatalogProduct extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
 
-		if (isset($data['product_category'])) {
-			foreach ($data['product_category'] as $category_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = '" . (int)$product_id . "', category_id = '" . (int)$category_id . "'");
-			}		
-		}
+if (isset($data['product_category'])) {
+	$category_ids = $this->expandCategoriesWithParents($data['product_category']);
+
+	foreach ($category_ids as $category_id) {
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = '" . (int)$product_id . "', category_id = '" . (int)$category_id . "'");
+	}
+}
+
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_filter WHERE product_id = '" . (int)$product_id . "'");
 
@@ -331,12 +336,64 @@ class ModelCatalogProduct extends Model {
 		return $query->row;
 	}
 
+
+private function getCategoryParentsRecursive($category_id) {
+	$parents = array();
+
+	$query = $this->db->query("SELECT parent_id FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$category_id . "'");
+
+	if ($query->num_rows) {
+		$parent_id = (int)$query->row['parent_id'];
+
+		if ($parent_id > 0) {
+			$parents[] = $parent_id;
+
+			// recurse
+			$more = $this->getCategoryParentsRecursive($parent_id);
+			if ($more) {
+				$parents = array_merge($parents, $more);
+			}
+		}
+	}
+
+	return $parents;
+}
+
+private function expandCategoriesWithParents($category_ids) {
+	$all = array();
+
+	if (!is_array($category_ids)) {
+		return $all;
+	}
+
+	foreach ($category_ids as $cid) {
+		$cid = (int)$cid;
+		if ($cid <= 0) continue;
+
+		$all[] = $cid;
+
+		$parents = $this->getCategoryParentsRecursive($cid);
+		if ($parents) {
+			$all = array_merge($all, $parents);
+		}
+	}
+
+	// unique + reindex
+	$all = array_values(array_unique($all));
+
+	return $all;
+}
+
 public function getProducts($data = array()) {
 $sql = "SELECT p.*, pd.*, (p.price - p.cost) AS profit FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)";
 
     if (!empty($data['filter_category_id'])) {
         $sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";
     }
+
+	if (!empty($data['filter_category_id'])) {
+	$sql .= " AND p2c.category_id = '" . (int)$data['filter_category_id'] . "'";
+}
 
     $sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
@@ -636,6 +693,10 @@ public function getTotalProducts($data = array()) {
         $sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";
     }
 
+	if (!empty($data['filter_category_id'])) {
+	$sql .= " AND p2c.category_id = '" . (int)$data['filter_category_id'] . "'";
+}
+
     $sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
     if (!empty($data['filter_name'])) {
@@ -746,5 +807,40 @@ if (!empty($data['filter_profit'])) {
 
 		return $query->row['total'];
 	}
+
+public function getAllCategoryPaths() {
+	$sql = "SELECT cp.category_id, GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR ' > ') AS path
+			FROM " . DB_PREFIX . "category_path cp
+			LEFT JOIN " . DB_PREFIX . "category_description cd1
+				ON (cp.path_id = cd1.category_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "')
+			GROUP BY cp.category_id
+			ORDER BY path ASC";
+
+	$query = $this->db->query($sql);
+
+	return $query->rows;
+}
+
+public function getProductCategoryPaths($product_id) {
+	$sql = "SELECT p2c.category_id,
+				   GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR ' > ') AS path
+			FROM " . DB_PREFIX . "product_to_category p2c
+			LEFT JOIN " . DB_PREFIX . "category_path cp ON (cp.category_id = p2c.category_id)
+			LEFT JOIN " . DB_PREFIX . "category_description cd1
+				ON (cd1.category_id = cp.path_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "')
+			WHERE p2c.product_id = '" . (int)$product_id . "'
+			GROUP BY p2c.category_id
+			ORDER BY path ASC";
+
+	$query = $this->db->query($sql);
+
+	$paths = array();
+	foreach ($query->rows as $row) {
+		if (!empty($row['path'])) {
+			$paths[] = $row['path'];
+		}
+	}
+	return $paths;
+}
 }
 ?>

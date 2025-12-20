@@ -134,3 +134,19 @@
 2025-12-15 20:28:57 - PHP Notice:  Undefined variable: profit_value in C:\xampp\htdocs\opencart156\admin\controller\catalog\product.php on line 408
 2025-12-15 20:28:57 - PHP Notice:  Undefined variable: profit_value in C:\xampp\htdocs\opencart156\admin\controller\catalog\product.php on line 408
 2025-12-15 20:28:57 - PHP Notice:  Undefined variable: filter_cost in C:\xampp\htdocs\opencart156\admin\controller\catalog\product.php on line 552
+2025-12-20 21:19:54 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:19:54 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:19:57 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:19:57 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:20:50 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:20:50 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:21:29 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:21:29 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:23:34 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:23:34 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:25:04 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:25:04 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:25:41 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:25:41 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:26:21 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 21:26:21 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
