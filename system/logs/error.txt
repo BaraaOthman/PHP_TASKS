@@ -150,3 +150,60 @@
 2025-12-20 21:25:41 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
 2025-12-20 21:26:21 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
 2025-12-20 21:26:21 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:27:46 - PHP Notice:  Undefined variable: breadcrumbs in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 4
+2025-12-20 22:27:46 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 4
+2025-12-20 22:27:46 - PHP Notice:  Undefined variable: repair in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-20 22:27:46 - PHP Notice:  Undefined variable: insert in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-20 22:27:46 - PHP Notice:  Undefined variable: delete in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 20
+2025-12-20 22:27:46 - PHP Notice:  Undefined variable: token in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 72
+2025-12-20 22:39:13 - PHP Notice:  Undefined variable: url in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 118
+2025-12-20 22:39:13 - PHP Notice:  Undefined variable: repair in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-20 22:39:13 - PHP Notice:  Undefined variable: insert in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-20 22:39:13 - PHP Notice:  Undefined variable: delete in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 20
+2025-12-20 22:39:13 - PHP Notice:  Undefined variable: token in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 72
+2025-12-20 22:42:42 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:42:42 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:44:13 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:44:13 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:44:26 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:44:26 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:44:58 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:44:58 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:46:01 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:46:01 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:46:15 - PHP Notice:  Undefined variable: all_categories in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:46:15 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\opencart156\admin\view\template\catalog\product_list.tpl on line 112
+2025-12-20 22:46:19 - PHP Notice:  Undefined variable: url in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 118
+2025-12-20 22:46:19 - PHP Notice:  Undefined variable: repair in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-20 22:46:19 - PHP Notice:  Undefined variable: insert in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-20 22:46:19 - PHP Notice:  Undefined variable: delete in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 20
+2025-12-20 22:46:19 - PHP Notice:  Undefined variable: token in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 72
+2025-12-22 20:54:33 - PHP Notice:  Undefined variable: url in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 118
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined index: product_count in C:\xampp\htdocs\opencart156\admin\controller\catalog\category.php on line 201
+2025-12-22 20:54:33 - PHP Notice:  Undefined variable: repair in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-22 20:54:33 - PHP Notice:  Undefined variable: insert in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-22 20:54:33 - PHP Notice:  Undefined variable: delete in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 20
+2025-12-22 20:54:33 - PHP Notice:  Undefined variable: token in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 74
+2025-12-22 21:01:27 - PHP Notice:  Undefined variable: repair in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-22 21:01:27 - PHP Notice:  Undefined variable: insert in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 17
+2025-12-22 21:01:27 - PHP Notice:  Undefined variable: delete in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 20
+2025-12-22 21:01:27 - PHP Notice:  Undefined variable: token in C:\xampp\htdocs\opencart156\admin\view\template\catalog\category_list.tpl on line 74

@@ -23,6 +23,14 @@
             <tr>
               <td width="1" style="text-align: center;"><input type="checkbox" onclick="$('input[name*=\'selected\']').attr('checked', this.checked);" /></td>
               <td class="left"><?php echo $column_name; ?></td>
+              <td class="left"><?php echo $column_parent_path; ?></td>
+              <td class="left">
+  <?php if ($sort == 'product_count') { ?>
+    <a href="<?php echo $sort_product_count; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_product_count; ?></a>
+  <?php } else { ?>
+    <a href="<?php echo $sort_product_count; ?>"><?php echo $column_product_count; ?></a>
+  <?php } ?>
+</td>
               <td class="right"><?php echo $column_sort_order; ?></td>
               <td class="right"><?php echo $column_action; ?></td>
             </tr>
@@ -37,6 +45,11 @@
                 <input type="checkbox" name="selected[]" value="<?php echo $category['category_id']; ?>" />
                 <?php } ?></td>
               <td class="left"><?php echo $category['name']; ?></td>
+              <td class="left"><?php echo ($category['parent_path'] ? $category['parent_path'] : ''); ?></td>
+              <td class="left"><?php echo $category['product_count']; ?></td>
+              <td class="left">
+  <input type="text" name="filter_product_count" value="<?php echo $filter_product_count; ?>" size="10" placeholder=">= 10" />
+</td>
               <td class="right"><?php echo $category['sort_order']; ?></td>
               <td class="right"><?php foreach ($category['action'] as $action) { ?>
                 [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
@@ -55,4 +68,19 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+function filter() {
+  url = 'index.php?route=catalog/category&token=<?php echo $token; ?>';
+
+var filter_product_count = $('input[name=\'filter_product_count\']').attr('value');
+
+if (filter_product_count) {
+  url += '&filter_product_count=' + encodeURIComponent(filter_product_count);
+}
+
+  location = url;
+}
+
+</script>
 <?php echo $footer; ?>
