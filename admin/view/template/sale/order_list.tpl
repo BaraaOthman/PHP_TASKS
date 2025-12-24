@@ -95,8 +95,10 @@
               <td class="left"><?php echo $order['date_added']; ?></td>
               <td class="left"><?php echo $order['date_modified']; ?></td>
               <td class="right"><?php foreach ($order['action'] as $action) { ?>
-                [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
-                <?php } ?></td>
+    [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
+<?php } ?>
+[ <a href="javascript:void(0);" onclick="viewProducts(<?php echo $order['order_id']; ?>);">View Products</a> ]
+</td>
             </tr>
             <?php } ?>
             <?php } else { ?>
@@ -170,14 +172,13 @@ $('#form input').keydown(function(e) {
 $.widget('custom.catcomplete', $.ui.autocomplete, {
 	_renderMenu: function(ul, items) {
 		var self = this, currentCategory = '';
-		
+
 		$.each(items, function(index, item) {
 			if (item.category != currentCategory) {
 				ul.append('<li class="ui-autocomplete-category">' + item.category + '</li>');
-				
 				currentCategory = item.category;
 			}
-			
+
 			self._renderItem(ul, item);
 		});
 	}
@@ -187,9 +188,9 @@ $('input[name=\'filter_customer\']').catcomplete({
 	delay: 500,
 	source: function(request, response) {
 		$.ajax({
-			url: 'index.php?route=sale/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request.term),
+			url: 'index.php?route=sale/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' + encodeURIComponent(request.term),
 			dataType: 'json',
-			success: function(json) {		
+			success: function(json) {
 				response($.map(json, function(item) {
 					return {
 						category: item.customer_group,
@@ -199,15 +200,69 @@ $('input[name=\'filter_customer\']').catcomplete({
 				}));
 			}
 		});
-	}, 
+	},
 	select: function(event, ui) {
 		$('input[name=\'filter_customer\']').val(ui.item.label);
-						
 		return false;
 	},
 	focus: function(event, ui) {
-      	return false;
-   	}
+		return false;
+	}
 });
-//--></script> 
+//--></script>
+
+<script type="text/javascript">
+function viewProducts(order_id) {
+	$('#product-modal-body').html('<tr><td colspan="5">Loading...</td></tr>');
+
+	$.ajax({
+		url: 'index.php?route=sale/order/products&token=<?php echo $token; ?>&order_id=' + order_id,
+		dataType: 'json',
+		success: function(json) {
+			var html = '';
+
+			if (!json || json.length === 0) {
+				html = '<tr><td colspan="5">No products found</td></tr>';
+			} else {
+				$.each(json, function(i, product) {
+					html += '<tr>';
+					html += '<td class="left">' + product.product_id + '</td>';
+					html += '<td class="left">' + product.name + '</td>';
+					html += '<td class="right">' + product.price + '</td>';
+					html += '<td class="right">' + product.quantity + '</td>';
+					html += '<td class="right">' + product.total + '</td>';
+					html += '</tr>';
+				});
+			}
+
+			$('#product-modal-body').html(html);
+		},
+		error: function() {
+			$('#product-modal-body').html('<tr><td colspan="5">Error loading products</td></tr>');
+		}
+	});
+
+	$('#product-modal').dialog({
+		title: 'Order Products',
+		width: 700,
+		modal: true
+	});
+}
+</script>
+
+<div id="product-modal" style="display:none;">
+	<table class="list">
+		<thead>
+			<tr>
+				<td class="left">Product ID</td>
+				<td class="left">Product Name</td>
+				<td class="right">Price</td>
+				<td class="right">Quantity</td>
+				<td class="right">Total</td>
+			</tr>
+		</thead>
+		<tbody id="product-modal-body"></tbody>
+	</table>
+</div>
+
 <?php echo $footer; ?>
